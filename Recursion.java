@@ -67,15 +67,75 @@ public static int  naturalSum(int n){
     }
    return firstOccurance(arr, key, i+1);
     }
+
+    //power of 2^n
+
+    public static int  powerOF2(int n){
+        if(n==0){
+            return 1;
+        }
+        int pow=2*powerOF2(n-1);
+        return pow;
+    }
+    //optimized power
+    public static double optimizedPower(int a,int n){
+        if(n==0){
+            return 1;
+        }
+       double  halfpow= optimizedPower(a ,n/2);
+        double halfpowsq=halfpow*halfpow;
+        
+        if(n%2!= 0){
+            halfpowsq=a*halfpowsq;
+        }
+        return halfpowsq;
+    }
+
+//Tiling problem
+public static int TilingProblem(int n){//2 * n (size of floor)
+   if (n==0||n==1) {
+    return 1;
+   }
+   //vertical choice
+   int nm1=TilingProblem(n-1);
+   //horizontal choice
+   int nm2=TilingProblem(n-2);
+   int total=nm1+nm2;
+    return total;
+}
+
+//Remove duplicates 
+public static void removeDuplicates(String str,int idx,StringBuilder newstr,boolean map[]){
+   //base
+    if(idx ==str.length()){
+        System.out.println(newstr);
+        return;
+    }
+    //kaam
+    char currentChar =str.charAt(idx);
+    if(map[currentChar-'a']==true){
+        removeDuplicates(str, idx+1, newstr, map);
+    }
+    else{
+        map[currentChar-'a']= true;
+        removeDuplicates(str, idx, newstr.append(currentChar), map);
+    }
+}
     public static void main(String[] args) {
-        int n=18;
-        //DecPrint(n);
-        //IncPrint(n);
-      //  System.out.println(factorial(n));
-        // naturalSum(n);
-     //  System.out.println(fib(n));
-     int arr[]={1,5,9,45,15,18};
-     System.out.println(firstOccurance(arr, n, 0));
+        int n=64;
+        int a =2;
+         //DecPrint(n);
+         //IncPrint(n);
+         //  System.out.println(factorial(n));
+         // naturalSum(n);
+         //  System.out.println(fib(n));
+         // int arr[]={1,5,9,45,15,18};
+         //  System.out.println(firstOccurance(arr, n, 0));
+         //System.out.println(powerOF2(n));
+         // System.out.println(optimizedPower(a, n));
+          ///System.out.println(TilingProblem(4));
+          String str="Prathmeshp";
+          removeDuplicates(str, 0, new StringBuilder(), new boolean[26]);
     }
 
 
