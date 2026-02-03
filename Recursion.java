@@ -121,9 +121,23 @@ public static void removeDuplicates(String str,int idx,StringBuilder newstr,bool
         removeDuplicates(str, idx, newstr.append(currentChar), map);
     }
 }
+//binary string print without consective ones
+public static void binaryString(int n,int lastplace, String str){
+    //base case
+    if(n==0){
+        System.out.println(str);
+        return;
+    }
+     binaryString(n-1, 0,str+"0");
+if(lastplace==0){ 
+    binaryString(n-1, 1,str+"1");
+
+}
+
+}
     public static void main(String[] args) {
-        int n=64;
-        int a =2;
+       // int n=64;
+        //int a =2;
          //DecPrint(n);
          //IncPrint(n);
          //  System.out.println(factorial(n));
@@ -134,11 +148,14 @@ public static void removeDuplicates(String str,int idx,StringBuilder newstr,bool
          //System.out.println(powerOF2(n));
          // System.out.println(optimizedPower(a, n));
           ///System.out.println(TilingProblem(4));
-          String str="Prathmeshp";
-          removeDuplicates(str, 0, new StringBuilder(), new boolean[26]);
+          //String str="Prathmeshp";
+          //removeDuplicates(str, 0, new StringBuilder(), new boolean[26]);
+
+          binaryString(4, 0,"");
     }
-
-
     
-    
+
 }
+    
+    
+
