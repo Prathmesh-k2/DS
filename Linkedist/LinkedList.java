@@ -1,4 +1,3 @@
-
 public class LinkedList {
 
     static class Node {
@@ -218,8 +217,47 @@ public static void removeCycle(){
 
 }
 
+//zig-zag Linked list 
+  public void zigzag(){
+    //find mid;
+    Node slow = head;
+    Node fast = head;
+    while (fast!=null && fast.next !=null) {
+        slow= slow.next;
+        fast= fast.next.next;
+    }
+    Node midnode= slow;
+
+    //reverse 2nd half
+    Node curr = midnode.next;
+     midnode.next = null;  
+    Node prev  = null;
+    Node next = null; 
+    while ( curr !=null) {
+        next =curr.next;
+        curr.next= prev;
+        prev= curr;
+        curr=next;
+    }
+        //zig merge
+        Node left =head;
+        Node right=prev;
+        Node NextL,NextR;
+        while (left !=null && right !=null)  {
+            NextL = left.next;
+            left.next = right;
+            NextR = right.next;
+            right.next = NextL;
+
+            left = NextL;
+            right = NextR;
+        }
+        
+    } 
+  
+
     public static  void main(String[] args) {
-       // LinkedList ll=new LinkedList();
+        LinkedList ll=new LinkedList();
         // ll.printL();
 //            ll.addFirst(2);
 //         // ll. printL();
@@ -242,11 +280,14 @@ public static void removeCycle(){
 //      ll.printL();
 
 
-// ll.addLast(1);
-// ll.addLast(2);
-// ll.addLast(2);
-// ll.addLast(2);
-// ll.addLast(1);
+ll.addLast(1);
+ll.addLast(2);
+ll.addLast(3);
+ll.addLast(4);
+ll.addLast(5);
+ll.printL();
+ll.zigzag();
+ll.printL();
 
 // ll.printL();
 // //ll.Reverse();
@@ -256,14 +297,13 @@ public static void removeCycle(){
 // ll.printL();
  
 // 
-head = new Node(1);
-Node temp = new Node(2);
-head.next = temp;
-head.next.next = new Node(3);
-head.next.next.next = temp;
-System.out.println();
-removeCycle();
+// head = new Node(1);
+// Node temp = new Node(2);
+// head.next = temp;
+// head.next.next = new Node(3);
+// head.next.next.next = temp;
+// System.out.println();
+// removeCycle();
 }
-
 
 }
