@@ -96,6 +96,7 @@ public class LinkedList {
 
         return -1;
     }
+ 
     //reverse list
     public void Reverse(){
     Node prev = null;
@@ -254,7 +255,26 @@ public static void removeCycle(){
         }
         
     } 
-  
+     public int helper(Node head ,int key){
+        if(head==null){
+            return -1;
+
+        }
+        if(head.data==key){
+            return 0;
+        }
+        int id= helper(head.next, key);
+        if(id==-1){
+            return -1;
+            
+        }else{
+            return id++;
+        }
+    }
+    //Recursive search
+    public int recSeacrch(int key){
+           return helper(head ,key);
+    }
 
     public static  void main(String[] args) {
         LinkedList ll=new LinkedList();
@@ -285,9 +305,10 @@ ll.addLast(2);
 ll.addLast(3);
 ll.addLast(4);
 ll.addLast(5);
-ll.printL();
-ll.zigzag();
-ll.printL();
+System.out.println("ll.recSeacrch(5)");
+// ll.printL();
+// ll.zigzag();
+// ll.printL();
 
 // ll.printL();
 // //ll.Reverse();
