@@ -1,3 +1,4 @@
+import java.util.*;
 public class binaryTree {
     static class Node{
         int data;
@@ -47,11 +48,37 @@ postOrder(root.left);
 postOrder(root.right);
 System.out.print(root.data +" ");
 }
-//level order 
-public static void levelOrder(Node root){
-	if(root==null) return;
-	
+//level ordere
+public static void bfs(Node root){
+	Queue<Node>q=new LinkedList<>();
+	if(root!=null) q.add(root);
+	while(q.size()>0){
+		Node temp=q.peek();
+		if(temp.left!=null) q.add(temp.left);
+		if(temp.right!=null) q.add(temp.right);
+		System.out.print(temp.data+" ");
+		q.remove();
+
+	}
 }
+public static int size( Node root){
+	if(root==null) return 0;
+	return 1+size(root.left)+size(root.right);
+}
+	public static int sum(Node root){
+		if(root==null) return 0;
+        return  root.data+sum(root.left)+sum(root.right);
+	}
+
+public static int max(Node root){
+if(root==null) return 0;
+int a=root.data;
+int b=max(root.left);
+int c=max(root.right);
+ return Math.max(a,Math.max(b,c));
+}
+	
+
 
      public static void main(String [] args) {
         	Node root =new Node(2);
@@ -76,7 +103,11 @@ public static void levelOrder(Node root){
 				System.out.println();
 			postOrder(root);
 			System.out.println();
-        	
+        	System.out.println(size(root));
+			System.out.println(sum(root));
+			System.out.println(max(root));
+			//System.out.println(bfs(root));
+			bfs(root);
             
         }
     
